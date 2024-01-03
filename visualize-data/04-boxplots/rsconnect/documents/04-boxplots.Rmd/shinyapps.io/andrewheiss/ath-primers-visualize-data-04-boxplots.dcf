@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-04-boxplots
+title: ath-primers-visualize-data-04-boxplots
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865399
+bundleId: 8106148
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-04-boxplots/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

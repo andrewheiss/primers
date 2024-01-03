@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-02-bar-charts
+title: ath-primers-visualize-data-02-bar-charts
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865395
+bundleId: 8106144
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-02-bar-charts/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

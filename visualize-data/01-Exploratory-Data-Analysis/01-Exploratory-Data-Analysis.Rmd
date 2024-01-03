@@ -19,6 +19,7 @@ checker <- function(label, user_code, check_code, envir_result, evaluate_result,
 }
 tutorial_options(exercise.timelimit = 60, exercise.checker = checker)
 knitr::opts_chunk$set(error = TRUE)
+options(dplyr.summarise.inform = FALSE)
 ```
 
 ```{r, context="server-start", include=FALSE}
@@ -166,7 +167,7 @@ A variable is **categorical** if it can take only one of a small set of values. 
 ```{r echo = FALSE, out.width = "100%"}
 ggplot(data = mpg) +
   geom_bar(aes(x = class)) + 
-  ggtitle("Classes of cars in mpg")
+  labs(title = "Classes of cars in mpg")
 ```
 
 Don't worry if you cannot make or interpret a bar chart. We'll survey several types of charts in this tutorial, as we create a strategy for EDA. You'll learn how to build each type of chart in the tutorials that follow.
@@ -180,7 +181,7 @@ Numbers and date-times are two examples of continuous variables. You can visuali
 ```{r echo = FALSE, message = FALSE, out.width = "100%"}
 ggplot(data = faithful) +
   geom_histogram(aes(x = eruptions), binwidth = 0.25) + 
-  ggtitle("Lengths of 272 eruptions of Old Faithful")
+  labs(title = "Lengths of 272 eruptions of Old Faithful")
 ```
 
 ### Frequencies
@@ -204,7 +205,7 @@ The bar chart below visualises the distribution of the `class` variable in the `
 ```{r echo = FALSE, out.width = "100%"}
 ggplot(data = mpg) +
   geom_bar(aes(x = class)) + 
-  ggtitle("Classes of cars in mpg")
+  labs(title = "Classes of cars in mpg")
 ```
 
 ```{r fq1, echo = FALSE}
@@ -260,7 +261,7 @@ To see how many eruptions lasted for a specific length of time, find the length 
 ```{r echo = FALSE, message = FALSE, out.width = "100%"}
 ggplot(data = faithful) +
   geom_histogram(aes(x = eruptions), binwidth = 0.25) + 
-  ggtitle("Lengths of 272 eruptions of Old Faithful")
+  labs(title = "Lengths of 272 eruptions of Old Faithful")
 ```
 
 ```{r cq1, echo = FALSE}
@@ -284,15 +285,15 @@ If variation describes the behavior _within_ a variable, covariation describes t
 You can plot the relationship between two categorical variables with a heatmap or with geom_count:
 
 ```{r echo = FALSE, out.width = "50%"}
-diamonds %>% 
-  count(color, cut) %>% 
+diamonds |> 
+  count(color, cut) |> 
   ggplot(mapping = aes(x = color, y = cut)) +
     geom_tile(mapping = aes(fill = n)) +
-    ggtitle("Color grade vs. cut quality for 53940 diamonds")
+    labs(title = "Color grade vs. cut quality for 53940 diamonds")
 
 ggplot(diamonds) +
   geom_count(aes(color, cut)) +
-    ggtitle("Color grade vs. cut quality for 53940 diamonds")
+    labs(title = "Color grade vs. cut quality for 53940 diamonds")
 ```
 
 Again, don't be concerned if you do not know how to make these graphs. For now, let's focus on the strategy of how to use visualizations in EDA. You'll learn how to make different types of plots in the tutorials that follow. 
@@ -304,7 +305,7 @@ You can plot the relationship between one continuous and one categorical variabl
 ```{r echo = FALSE, out.width = "100%"}
 ggplot(mpg) +
   geom_boxplot(aes(reorder(class, hwy, median), hwy)) +
-    ggtitle("Pickup trucks and SUVs display the lowest fuel efficiency") +
+    labs(title = "Pickup trucks and SUVs display the lowest fuel efficiency") +
     labs(x = "class")
 ```
 
@@ -315,7 +316,7 @@ You can plot the relationship between two continuous variables with a scatterplo
 ```{r echo = FALSE, message = FALSE, out.width = "100%"}
 ggplot(data = faithful) +
   geom_point(aes(x = eruptions, y = waiting)) + 
-  ggtitle("Length of eruption vs wait time before eruption")
+  labs(title = "Length of eruption vs wait time before eruption")
 ```
 
 ### Patterns
@@ -341,7 +342,7 @@ The scatterplot below shows the relationship between the length of an eruption o
 ```{r echo = FALSE, message = FALSE, out.width = "100%"}
 ggplot(data = faithful) +
   geom_point(aes(x = eruptions, y = waiting)) + 
-  ggtitle("Length of eruption vs wait time before eruption")
+  labs(title = "Length of eruption vs wait time before eruption")
 ```
 
 ```{r pq1, echo = FALSE}

@@ -20,32 +20,18 @@ checker <- function(label, user_code, check_code, envir_result, evaluate_result,
 }
 tutorial_options(exercise.timelimit = 60, exercise.checker = checker)
 knitr::opts_chunk$set(error = TRUE, out.width = "100%")
+options(dplyr.summarise.inform = FALSE)
 ```
 
 ```{r, context="server-start", include=FALSE}
 # Capture metrics only if running an official primer hosted by RStudio
 library(curl)
 library(later)
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installMetrics", local=TRUE), 
-  error = function(e){ 
-    print("Warning: An error occurred with the tracking code.")
-  }
-)
-```
-
-```{r, context = "render", results = 'asis', echo = FALSE}
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installClient", local=TRUE)$value,
-  error = function(e){ 
-    print("Warning: An error occurred with the client code.")
-  }
-)
 ```
 
 ## Welcome 
 
-A **scatterplot** displays the relationship between two continuous variables. Scatterplots are one of the most common types of graphs---in fact, you've met scatterplots already in [Visualization Basics](https://tutorials.shinyapps.io/02-Vis-Basics/). 
+A **scatterplot** displays the relationship between two continuous variables. Scatterplots are one of the most common types of graphs---in fact, you've met scatterplots already in [Visualization Basics](https://andrewheiss.shinyapps.io/ath-primers-basics-01-visualization/). 
 
 In this tutorial, you'll learn how to:
 
@@ -67,22 +53,22 @@ In [Visualization Basics](https://tutorials.shinyapps.io/02-Vis-Basics/), you le
 The code below summarises the mpg data set and begins to plot the results. Finish the plot with `geom_point()`. Put `mean_cty` on the $x$ axis and `mean_hwy` on the $y$ axis.
 
 ```{r r1, exercise = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot()
 ```
 
 ```{r r1-solution}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy))
 ```
 
 ```{r r1-check}
-"Good job! It can be tricky to remember when to use %>% and when to use +. Use %>% to add one complete step to a pipe of code. Use + to add one more line to a ggplot2 call."
+"Good job! It can be tricky to remember when to use |> and when to use +. Use |> to add one complete step to a pipe of code. Use + to add one more line to a ggplot2 call."
 ```
 
 
@@ -93,23 +79,23 @@ mpg %>%
 Convert the plot below from `geom_point()` to `geom_text()` and map the label aesthetic to the class variable. When you are finished convert the code to `geom_label()` and rerun the plot. Can you spot the difference?
 
 ```{r r2, exercise = TRUE, exercise.eval = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy))
 ```
 
 ```{r r2-solution}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_text(mapping = aes(x = mean_cty, y = mean_hwy, label = class))
 
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_label(mapping = aes(x = mean_cty, y = mean_hwy, label = class))
 ```
@@ -126,20 +112,20 @@ In [Visualization Basics](https://tutorials.shinyapps.io/02-Vis-Basics/), you me
 `geom_smooth()` uses a model to fit a smoothed line to the data and then visualizes the results. By default, `geom_smooth()` fits a loess smooth to data sets with less than 1,000 observations, and a generalized additive model to data sets with more than 1,000 observations. 
 
 ```{r echo = FALSE, out.width="50%", message = FALSE, warning = FALSE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
-    ggtitle("geom_point)") +
+    labs(title = "geom_point)") +
     ylim(16, 30)
 
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), se = FALSE) +
-    ggtitle("geom_smooth()") +
+    labs(title = "geom_smooth()") +
     ylim(16, 30)
 ```
 
@@ -150,16 +136,16 @@ You can use the `method` parameter of `geom_smooth()` to fit and display other t
 In the code below, use `geom_smooth()` to draw the linear model line that fits the data.
 
 ```{r r3, exercise = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() 
 ```
 
 ```{r r3-solution}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm)
 ```
@@ -180,9 +166,9 @@ mpg %>%
 In ggplot2, you can add multiple geoms to a plot by adding multiple geom functions to the plot call. For example, the code below creates a plot that contains both points and a smooth line. Imagine what the results will look like in your head, and then run the code to see if you are right.
 
 ```{r r4, exercise = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm) 
@@ -199,18 +185,18 @@ Do you remember how the labels that we made early overlapped each other and ran 
 Use `geom_label_repel()` to add a new layer to our plot below. `geom_label_repel()` requires the same aesthetics as `geom_label()`: x, y, and label (here set to class).
 
 ```{r r5, exercise = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm)
 ```
 
 ```{r r5-solution}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm) +
@@ -226,9 +212,9 @@ mpg %>%
 If you study the solution for the previous exercise, you'll notice a fair amount of duplication. We set the same aesthetic mappings in three different places.
 
 ```{r eval = FALSE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm) +
@@ -265,9 +251,9 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 Reduce duplication in the code below by moving as many local mappings into the global mappings as possible. Rerun the new code to ensure that it creates the same plot.
 
 ```{r r6, exercise = TRUE, exercise.eval = TRUE}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot() +
     geom_point(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_smooth(mapping = aes(x = mean_cty, y = mean_hwy), method = lm) +
@@ -275,9 +261,9 @@ mpg %>%
 ```
 
 ```{r r6-solution}
-mpg %>% 
-  group_by(class) %>% 
-  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) %>% 
+mpg |> 
+  group_by(class) |> 
+  summarise(mean_cty = mean(cty), mean_hwy = mean(hwy)) |> 
   ggplot(mapping = aes(x = mean_cty, y = mean_hwy)) +
     geom_point() +
     geom_smooth(method = lm) +

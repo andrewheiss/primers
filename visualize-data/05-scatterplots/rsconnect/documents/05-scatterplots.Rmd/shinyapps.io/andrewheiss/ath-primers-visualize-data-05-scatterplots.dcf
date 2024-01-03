@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-05-scatterplots
+title: ath-primers-visualize-data-05-scatterplots
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865405
+bundleId: 8106153
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-05-scatterplots/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

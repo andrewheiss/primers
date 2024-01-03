@@ -19,27 +19,13 @@ checker <- function(label, user_code, check_code, envir_result, evaluate_result,
 }
 tutorial_options(exercise.timelimit = 60, exercise.checker = checker)
 knitr::opts_chunk$set(error = TRUE, out.width = "100%")
+options(dplyr.summarise.inform = FALSE)
 ```
 
 ```{r, context="server-start", include=FALSE}
 # Capture metrics only if running an official primer hosted by RStudio
 library(curl)
 library(later)
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installMetrics", local=TRUE), 
-  error = function(e){ 
-    print("Warning: An error occurred with the tracking code.")
-  }
-)
-```
-
-```{r, context = "render", results = 'asis', echo = FALSE}
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installClient", local=TRUE)$value,
-  error = function(e){ 
-    print("Warning: An error occurred with the client code.")
-  }
-)
 ```
 
 ## Welcome
@@ -73,7 +59,7 @@ You should not supply a $y$ aesthetic when you use `geom_bar()`; ggplot2 will co
 You can compute this information manually with the `count()` function from the dplyr package.
 
 ```{r}
-diamonds %>% 
+diamonds |> 
   count(cut)
 ```
 
@@ -112,7 +98,7 @@ ggplot(data = diamonds) +
 ```{r out.width = "80%", echo = FALSE}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut)) + 
-  ggtitle("Distribution of diamond cuts")
+  ggtitle(title = "Distribution of diamond cuts")
 ```
 
 ```{r r2, echo = FALSE}
@@ -159,8 +145,8 @@ Recreate the bar graph of `color` from exercise one, but this time first use `co
 ```
 
 ```{r r4-solution}
-diamonds %>% 
-  count(color) %>% 
+diamonds |> 
+  count(color) |> 
   ggplot() +
     geom_col(mapping = aes(x = color, y = n))
 ```
@@ -191,11 +177,11 @@ The color aesthetic controls the outline of each bar in your bar plot, which may
 ```{r echo = FALSE, out.width="50%"}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, color = cut), size = 1) + 
-  ggtitle("color = cut")
+  ggtitle(title = "color = cut")
 
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, fill = cut)) + 
-  ggtitle("fill = cut")
+  ggtitle(title = "fill = cut")
 ```
 
 Use the code chunk below to experiment with fill, along with other `geom_bar()` aesthetics, like alpha, linetype, and size.
@@ -365,7 +351,7 @@ You can more easily compare subgroups of data if you place each subgroup in its 
 ```{r echo = FALSE}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = color, fill = cut)) +
-  facet_wrap( ~ cut)
+  facet_wrap(vars(cut))
 ```
 
 ### facet_grid()
@@ -416,7 +402,7 @@ ggplot(data = diamonds) +
 ```{r facet4-solution}
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = color, fill = cut)) +
-  facet_wrap( ~ cut)
+  facet_wrap(vars(cut))
 ```
 
 ### scales
@@ -430,7 +416,7 @@ By default, each facet in your plot will share the same $x$ and $y$ ranges. You 
     ```{r}
     ggplot(data = diamonds) +
       geom_bar(mapping = aes(x = color, fill = cut)) +
-      facet_wrap( ~ cut, scales = "free_y")
+      facet_wrap(vars(cut), scales = "free_y")
     ```
 
 

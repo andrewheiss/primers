@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-08-customize
+title: ath-primers-visualize-data-08-customize
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865417
+bundleId: 8106164
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-08-customize/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

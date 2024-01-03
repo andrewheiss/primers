@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-03-histograms
+title: ath-primers-visualize-data-03-histograms
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865396
+bundleId: 8106147
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-03-histograms/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

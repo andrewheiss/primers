@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-06-line-graphs
+title: ath-primers-visualize-data-06-line-graphs
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865408
+bundleId: 8106158
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-06-line-graphs/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -41,27 +41,13 @@ checker <- function(label, user_code, check_code, envir_result, evaluate_result,
 }
 tutorial_options(exercise.timelimit = 60, exercise.checker = checker)
 knitr::opts_chunk$set(error = TRUE, out.width = "100%", message = FALSE)
+options(dplyr.summarise.inform = FALSE)
 ```
 
 ```{r, context="server-start", include=FALSE}
 # Capture metrics only if running an official primer hosted by RStudio
 library(curl)
 library(later)
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installMetrics", local=TRUE), 
-  error = function(e){ 
-    print("Warning: An error occurred with the tracking code.")
-  }
-)
-```
-
-```{r, context = "render", results = 'asis', echo = FALSE}
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installClient", local=TRUE)$value,
-  error = function(e){ 
-    print("Warning: An error occurred with the client code.")
-  }
-)
 ```
 
 ## Welcome
@@ -127,8 +113,8 @@ p
 Our plot shows something surprising: when you group diamonds by cut, the worst cut diamonds have the highest median price. It's a little hard to see in the plot, but you can verify it with some data manipulation.
 
 ```{r}
-diamonds %>% 
-  group_by(cut) %>% 
+diamonds |> 
+  group_by(cut) |> 
   summarise(median = median(price))
 ```
 

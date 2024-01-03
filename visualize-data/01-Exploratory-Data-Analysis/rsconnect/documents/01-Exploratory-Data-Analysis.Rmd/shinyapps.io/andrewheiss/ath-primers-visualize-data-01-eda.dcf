@@ -1,0 +1,12 @@
+name: ath-primers-visualize-data-01-eda
+title: ath-primers-visualize-data-01-eda
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865385
+bundleId: 8106133
+url: https://andrewheiss.shinyapps.io/ath-primers-visualize-data-01-eda/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

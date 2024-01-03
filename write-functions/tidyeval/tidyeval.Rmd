@@ -11,7 +11,7 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE, message = FALSE, warning=FALSE}
 library(learnr)
-library(grader)
+library(gradethis)
 library(tidyverse)
 library(rlang)
 
