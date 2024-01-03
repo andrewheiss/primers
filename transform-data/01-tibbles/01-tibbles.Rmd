@@ -26,21 +26,6 @@ knitr::opts_chunk$set(echo = FALSE)
 # Capture metrics only if running an official primer hosted by RStudio
 library(curl)
 library(later)
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installMetrics", local=TRUE), 
-  error = function(e){ 
-    print("Warning: An error occurred with the tracking code.")
-  }
-)
-```
-
-```{r, context = "render", results = 'asis', echo = FALSE}
-tryCatch(
-  source("https://metrics.rstudioprimers.com/learnr/installClient", local=TRUE)$value,
-  error = function(e){ 
-    print("Warning: An error occurred with the client code.")
-  }
-)
 ```
 
 ## Welcome
@@ -50,7 +35,7 @@ In this primer, you will explore the popularity of different names over time. To
 * tibbles and `View()`, which let you inspect raw data
 * `select()` and `filter()`, which let you extract rows and columns from a data frame
 * `arrange()`, which lets you reorder the rows in your data
-* `%>%`, which organizes your code into reader-friendly "pipes"
+* `|>`, which organizes your code into reader-friendly "pipes"
 * `mutate()`, `group_by()`, and `summarize()`, which help you use your data to compute new variables and summary statistics
 
 These are some of the most useful R functions for data science, and the tutorials that follow will provide you everything you need to learn them. 
@@ -224,6 +209,7 @@ When you load tidyverse with `library("tidyverse")`, it instructs R to load _the
 * readr
 * purrr
 * tibble
+* lubridate
 
 You can load the less commonly used tidyverse packages in the normal way, by running `library(<PACKAGE NAME>)` for each of them.
 

@@ -1,0 +1,12 @@
+name: ath-primers-transform-data-02-isolating
+title: ath-primers-transform-data-02-isolating
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865279
+bundleId: 8106054
+url: https://andrewheiss.shinyapps.io/ath-primers-transform-data-02-isolating/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

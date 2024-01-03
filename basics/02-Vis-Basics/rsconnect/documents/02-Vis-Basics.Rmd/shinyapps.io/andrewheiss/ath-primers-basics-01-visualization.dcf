@@ -5,7 +5,7 @@ account: andrewheiss
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10865172
-bundleId: 8105973
+bundleId: 8106021
 url: https://andrewheiss.shinyapps.io/ath-primers-basics-01-visualization/
 version: 1
 asMultiple: FALSE

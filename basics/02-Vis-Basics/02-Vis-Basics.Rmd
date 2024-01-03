@@ -574,7 +574,7 @@ The Grammar of Graphics provides a systematic way to build any graph, and it und
 
 The best way to understand the Grammar of Graphics is to see it explained in action:
 
-![](https://vimeo.com/223812632)
+<a href="https://vimeo.com/223812632" target="_blank">Go watch this video</a> (it can't be embedded here for reasons)
 
 ## The ggplot2 package
 

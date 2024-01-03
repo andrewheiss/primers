@@ -1,0 +1,12 @@
+name: ath-primers-transform-data-03-deriving
+title: ath-primers-transform-data-03-deriving
+username: andrewheiss
+account: andrewheiss
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10865299
+bundleId: 8106068
+url: https://andrewheiss.shinyapps.io/ath-primers-transform-data-03-deriving/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
